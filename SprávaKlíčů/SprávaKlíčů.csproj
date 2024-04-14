@@ -33,6 +33,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.Common.10.0.40219.1\lib\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.Common.10.0.40219.1\lib\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.Common.10.0.40219.1\lib\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,11 +55,78 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormOdebratKlicZam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOdebratKlicZam.Designer.cs">
+      <DependentUpon>FormOdebratKlicZam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormOdstranitKlic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOdstranitKlic.Designer.cs">
+      <DependentUpon>FormOdstranitKlic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormOdstranitZam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOdstranitZam.Designer.cs">
+      <DependentUpon>FormOdstranitZam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPridatKlicZam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPridatKlicZam.Designer.cs">
+      <DependentUpon>FormPridatKlicZam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPridatNovehoZam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPridatNovehoZam.Designer.cs">
+      <DependentUpon>FormPridatNovehoZam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPridatNovyKlic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPridatNovyKlic.Designer.cs">
+      <DependentUpon>FormPridatNovyKlic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormUpravitKlic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUpravitKlic.Designer.cs">
+      <DependentUpon>FormUpravitKlic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormUpravitZam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUpravitZam.Designer.cs">
+      <DependentUpon>FormUpravitZam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormUpravovaciOknoKlic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUpravovaciOknoKlic.Designer.cs">
+      <DependentUpon>FormUpravovaciOknoKlic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormUpravovaciOknoZam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUpravovaciOknoZam.Designer.cs">
+      <DependentUpon>FormUpravovaciOknoZam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormVybereZamProPrehled.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormVybereZamProPrehled.Designer.cs">
+      <DependentUpon>FormVybereZamProPrehled.cs</DependentUpon>
     </Compile>
     <Compile Include="Klic.cs" />
     <Compile Include="Program.cs" />
@@ -58,6 +134,39 @@
     <Compile Include="Zamestnanec.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOdebratKlicZam.resx">
+      <DependentUpon>FormOdebratKlicZam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOdstranitKlic.resx">
+      <DependentUpon>FormOdstranitKlic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOdstranitZam.resx">
+      <DependentUpon>FormOdstranitZam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPridatKlicZam.resx">
+      <DependentUpon>FormPridatKlicZam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPridatNovehoZam.resx">
+      <DependentUpon>FormPridatNovehoZam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPridatNovyKlic.resx">
+      <DependentUpon>FormPridatNovyKlic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUpravitKlic.resx">
+      <DependentUpon>FormUpravitKlic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUpravitZam.resx">
+      <DependentUpon>FormUpravitZam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUpravovaciOknoKlic.resx">
+      <DependentUpon>FormUpravovaciOknoKlic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUpravovaciOknoZam.resx">
+      <DependentUpon>FormUpravovaciOknoZam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormVybereZamProPrehled.resx">
+      <DependentUpon>FormVybereZamProPrehled.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -68,6 +177,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
