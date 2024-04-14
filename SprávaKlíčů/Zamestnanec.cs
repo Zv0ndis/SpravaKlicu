@@ -8,14 +8,16 @@ namespace SprávaKlíčů
 {
     public class Zamestnanec
     {
+        public int ID { get; set; }
         public string Jmeno { get; set; }
         public string Prijmeni { get; set; }
         public string Zkratka { get; set; }
 
         public List<Klic> VypujceneKlice { get; set; } = new List<Klic>();
 
-        public Zamestnanec(string jmeno, string prijmeni, string zkratka)
+        public Zamestnanec(string jmeno, string prijmeni, string zkratka,int ID)
         {
+            this.ID = ID;
             Jmeno = jmeno;
             Prijmeni = prijmeni;
             Zkratka = zkratka.ToUpper(); 

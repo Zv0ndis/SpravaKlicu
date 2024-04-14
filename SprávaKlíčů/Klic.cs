@@ -8,20 +8,20 @@ namespace SprávaKlíčů
 {
     public class Klic
     {
-        public int Cislo { get; set; }
+        public string Cislo { get; set; }
         public string NazevMistnosti { get; set; }
         public string OznaceniDveri { get; set; }
         public int PocetVyrobenychKusu { get; set; }
 
         public int PocetVypujcenychKusu { get; set; }
 
-        public Klic(int cislo, string nazevMistnosti, string oznaceniDveri, int pocetVyrobenychKusu)
+        public Klic(string cislo, string nazevMistnosti, string oznaceniDveri, int pocetVyrobenychKusu,int pocetVypujcenych)
         {
             Cislo = cislo;
             NazevMistnosti = nazevMistnosti;
             OznaceniDveri = oznaceniDveri;
             PocetVyrobenychKusu = pocetVyrobenychKusu;
-            PocetVypujcenychKusu = 0;
+            PocetVypujcenychKusu = pocetVypujcenych;
         }
     }
 }
