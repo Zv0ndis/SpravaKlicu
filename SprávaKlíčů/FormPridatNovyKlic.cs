@@ -20,7 +20,7 @@ namespace SprávaKlíčů
 
         private void BtnPridat_Click(object sender, EventArgs e)
         {
-            Klic Aktualni = new Klic(MTBCislo.Text, TBNazevMistnosti.Text, TBOznaceniDveri.Text,Convert.ToInt32(TBPocetKlicuNaPocatku.Text),0);
+            Klic Aktualni = new Klic(MTBCislo.Text, TBNazevMistnosti.Text, TBOznaceniDveri.Text, Convert.ToInt32(TBPocetKlicuNaPocatku.Text), 0, Data.klice.Count > 0 ? Data.klice[Data.klice.Count - 1].ID + 1 : 1);
             Data.klice.Add(Aktualni);
 
             using (SqlConnection connection = new SqlConnection(Data.connectionString))
@@ -29,8 +29,8 @@ namespace SprávaKlíčů
                 SqlTransaction transaction = connection.BeginTransaction();
                 try
                 {
-                    SqlCommand cmd = new SqlCommand("INSERT INTO Keys(Id,TypeOfRoom,DoorSign,HowManyMade) VALUES (@Id,@TypeOfRoom,@DoorSign,@HowManyMade)", connection, transaction);
-                    cmd.Parameters.AddWithValue("@Id", Aktualni.Cislo);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO Keys(Number,TypeOfRoom,DoorSign,HowManyMade) VALUES (@Number,@TypeOfRoom,@DoorSign,@HowManyMade)", connection, transaction);
+                    cmd.Parameters.AddWithValue("@Number", Aktualni.Cislo);
                     cmd.Parameters.AddWithValue("@TypeOfRoom", Aktualni.NazevMistnosti);
                     cmd.Parameters.AddWithValue("@DoorSign", Aktualni.OznaceniDveri);
                     cmd.Parameters.AddWithValue("@HowManyMade", Aktualni.PocetVyrobenychKusu);

@@ -19,7 +19,7 @@ namespace SprávaKlíčů
 
         private void BtnUpravitOK_Click(object sender, EventArgs e)
         {
-            FormUpravovaciOknoKlic form = new FormUpravovaciOknoKlic();
+            FormUpravovaciOknoKlic form = new FormUpravovaciOknoKlic(Data.klice[ListboxKlice.SelectedIndex]);
             form.Show();
             this.Close();
         }
@@ -27,6 +27,14 @@ namespace SprávaKlíčů
         private void BtnZrusit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void FormUpravitKlic_Load(object sender, EventArgs e)
+        {
+            foreach(Klic klic in Data.klice)
+            {
+                ListboxKlice.Items.Add($"{klic.Cislo} {klic.OznaceniDveri} {klic.NazevMistnosti}");
+            }
         }
     }
 }

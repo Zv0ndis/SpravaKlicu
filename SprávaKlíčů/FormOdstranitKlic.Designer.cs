@@ -36,17 +36,18 @@
             // ListboxKlice
             // 
             this.ListboxKlice.FormattingEnabled = true;
-            this.ListboxKlice.ItemHeight = 16;
-            this.ListboxKlice.Location = new System.Drawing.Point(21, 22);
+            this.ListboxKlice.Location = new System.Drawing.Point(16, 18);
+            this.ListboxKlice.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ListboxKlice.Name = "ListboxKlice";
-            this.ListboxKlice.Size = new System.Drawing.Size(666, 388);
+            this.ListboxKlice.Size = new System.Drawing.Size(500, 316);
             this.ListboxKlice.TabIndex = 19;
             // 
             // BtnZrusit
             // 
-            this.BtnZrusit.Location = new System.Drawing.Point(192, 463);
+            this.BtnZrusit.Location = new System.Drawing.Point(144, 376);
+            this.BtnZrusit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BtnZrusit.Name = "BtnZrusit";
-            this.BtnZrusit.Size = new System.Drawing.Size(97, 30);
+            this.BtnZrusit.Size = new System.Drawing.Size(73, 24);
             this.BtnZrusit.TabIndex = 18;
             this.BtnZrusit.Text = "Zrušit";
             this.BtnZrusit.UseVisualStyleBackColor = true;
@@ -54,9 +55,10 @@
             // 
             // BtnOdstranitOK
             // 
-            this.BtnOdstranitOK.Location = new System.Drawing.Point(21, 463);
+            this.BtnOdstranitOK.Location = new System.Drawing.Point(16, 376);
+            this.BtnOdstranitOK.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BtnOdstranitOK.Name = "BtnOdstranitOK";
-            this.BtnOdstranitOK.Size = new System.Drawing.Size(149, 30);
+            this.BtnOdstranitOK.Size = new System.Drawing.Size(112, 24);
             this.BtnOdstranitOK.TabIndex = 20;
             this.BtnOdstranitOK.Text = "Odstranit klíč";
             this.BtnOdstranitOK.UseVisualStyleBackColor = true;
@@ -64,14 +66,16 @@
             // 
             // FormOdstranitKlic
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 528);
+            this.ClientSize = new System.Drawing.Size(600, 429);
             this.Controls.Add(this.BtnOdstranitOK);
             this.Controls.Add(this.ListboxKlice);
             this.Controls.Add(this.BtnZrusit);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FormOdstranitKlic";
             this.Text = "Odstranit klíč";
+            this.Load += new System.EventHandler(this.FormOdstranitKlic_Load);
             this.ResumeLayout(false);
 
         }

@@ -76,7 +76,7 @@ namespace SprávaKlíčů
 
                     while (reader.Read())
                     {
-                        Klic key = new Klic(reader.GetString(0),reader.GetString(1),reader.GetString(2),reader.GetInt32(3),reader.GetInt32(4));
+                        Klic key = new Klic(reader.GetString(1),reader.GetString(2),reader.GetString(3),reader.GetInt32(4),reader.GetInt32(5),reader.GetInt32(0));
                         keys.Add(key);
                     }
 

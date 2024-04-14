@@ -36,17 +36,18 @@
             // ListboxKlice
             // 
             this.ListboxKlice.FormattingEnabled = true;
-            this.ListboxKlice.ItemHeight = 16;
-            this.ListboxKlice.Location = new System.Drawing.Point(22, 24);
+            this.ListboxKlice.Location = new System.Drawing.Point(16, 20);
+            this.ListboxKlice.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ListboxKlice.Name = "ListboxKlice";
-            this.ListboxKlice.Size = new System.Drawing.Size(666, 388);
+            this.ListboxKlice.Size = new System.Drawing.Size(500, 316);
             this.ListboxKlice.TabIndex = 19;
             // 
             // BtnZrusit
             // 
-            this.BtnZrusit.Location = new System.Drawing.Point(193, 465);
+            this.BtnZrusit.Location = new System.Drawing.Point(145, 378);
+            this.BtnZrusit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BtnZrusit.Name = "BtnZrusit";
-            this.BtnZrusit.Size = new System.Drawing.Size(97, 30);
+            this.BtnZrusit.Size = new System.Drawing.Size(73, 24);
             this.BtnZrusit.TabIndex = 18;
             this.BtnZrusit.Text = "Zrušit";
             this.BtnZrusit.UseVisualStyleBackColor = true;
@@ -54,9 +55,10 @@
             // 
             // BtnUpravitOK
             // 
-            this.BtnUpravitOK.Location = new System.Drawing.Point(22, 465);
+            this.BtnUpravitOK.Location = new System.Drawing.Point(16, 378);
+            this.BtnUpravitOK.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BtnUpravitOK.Name = "BtnUpravitOK";
-            this.BtnUpravitOK.Size = new System.Drawing.Size(150, 30);
+            this.BtnUpravitOK.Size = new System.Drawing.Size(112, 24);
             this.BtnUpravitOK.TabIndex = 17;
             this.BtnUpravitOK.Text = "Upravit klíč";
             this.BtnUpravitOK.UseVisualStyleBackColor = true;
@@ -64,14 +66,16 @@
             // 
             // FormUpravitKlic
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 524);
+            this.ClientSize = new System.Drawing.Size(600, 426);
             this.Controls.Add(this.ListboxKlice);
             this.Controls.Add(this.BtnZrusit);
             this.Controls.Add(this.BtnUpravitOK);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FormUpravitKlic";
             this.Text = "Upravit informace o klíči";
+            this.Load += new System.EventHandler(this.FormUpravitKlic_Load);
             this.ResumeLayout(false);
 
         }

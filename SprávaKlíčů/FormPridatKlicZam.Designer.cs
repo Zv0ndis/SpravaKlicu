@@ -40,53 +40,57 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(28, 24);
+            this.label1.Location = new System.Drawing.Point(21, 20);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(143, 16);
+            this.label1.Size = new System.Drawing.Size(115, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Vyberte zaměstnance: ";
             // 
             // ListboxZam
             // 
             this.ListboxZam.FormattingEnabled = true;
-            this.ListboxZam.ItemHeight = 16;
-            this.ListboxZam.Location = new System.Drawing.Point(31, 53);
+            this.ListboxZam.Location = new System.Drawing.Point(23, 43);
+            this.ListboxZam.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ListboxZam.Name = "ListboxZam";
-            this.ListboxZam.Size = new System.Drawing.Size(463, 244);
+            this.ListboxZam.Size = new System.Drawing.Size(348, 199);
             this.ListboxZam.TabIndex = 1;
             // 
             // ListboxKlice
             // 
             this.ListboxKlice.FormattingEnabled = true;
-            this.ListboxKlice.ItemHeight = 16;
-            this.ListboxKlice.Location = new System.Drawing.Point(527, 53);
+            this.ListboxKlice.Location = new System.Drawing.Point(395, 43);
+            this.ListboxKlice.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ListboxKlice.Name = "ListboxKlice";
-            this.ListboxKlice.Size = new System.Drawing.Size(463, 244);
+            this.ListboxKlice.Size = new System.Drawing.Size(348, 199);
             this.ListboxKlice.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(524, 24);
+            this.label2.Location = new System.Drawing.Point(393, 20);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(77, 16);
+            this.label2.Size = new System.Drawing.Size(64, 13);
             this.label2.TabIndex = 2;
             this.label2.Text = "Vyberte klíč";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(41, 348);
+            this.label3.Location = new System.Drawing.Point(31, 283);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(243, 16);
+            this.label3.Size = new System.Drawing.Size(195, 13);
             this.label3.TabIndex = 4;
             this.label3.Text = "datum reálné datum a ne přes tb hádám";
             // 
             // BtnDat
             // 
-            this.BtnDat.Location = new System.Drawing.Point(31, 403);
+            this.BtnDat.Location = new System.Drawing.Point(23, 327);
+            this.BtnDat.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BtnDat.Name = "BtnDat";
-            this.BtnDat.Size = new System.Drawing.Size(281, 33);
+            this.BtnDat.Size = new System.Drawing.Size(211, 27);
             this.BtnDat.TabIndex = 5;
             this.BtnDat.Text = "Přiřadit klíč zaměstnanci";
             this.BtnDat.UseVisualStyleBackColor = true;
@@ -94,9 +98,10 @@
             // 
             // BtnZrusit
             // 
-            this.BtnZrusit.Location = new System.Drawing.Point(336, 403);
+            this.BtnZrusit.Location = new System.Drawing.Point(252, 327);
+            this.BtnZrusit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BtnZrusit.Name = "BtnZrusit";
-            this.BtnZrusit.Size = new System.Drawing.Size(107, 33);
+            this.BtnZrusit.Size = new System.Drawing.Size(80, 27);
             this.BtnZrusit.TabIndex = 6;
             this.BtnZrusit.Text = "Zrušit";
             this.BtnZrusit.UseVisualStyleBackColor = true;
@@ -104,9 +109,9 @@
             // 
             // FormPridatKlicZam
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1034, 473);
+            this.ClientSize = new System.Drawing.Size(776, 384);
             this.Controls.Add(this.BtnZrusit);
             this.Controls.Add(this.BtnDat);
             this.Controls.Add(this.label3);
@@ -114,8 +119,10 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.ListboxZam);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FormPridatKlicZam";
             this.Text = "Přidat klíč zaměstnanci";
+            this.Load += new System.EventHandler(this.FormPridatKlicZam_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

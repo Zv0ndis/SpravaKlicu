@@ -23,7 +23,7 @@ namespace SprávaKlíčů
 
         private void BtnPridat_Click(object sender, EventArgs e)
         {
-            Zamestnanec Aktualni = new Zamestnanec(TBJmeno.Text, TBPrijmeni.Text, TBZkratkaZamestnance.Text,Data.zamestnanci[Data.zamestnanci.Count-1].ID+1);
+            Zamestnanec Aktualni = new Zamestnanec(TBJmeno.Text, TBPrijmeni.Text, TBZkratkaZamestnance.Text,Data.zamestnanci.Count>0 ? Data.zamestnanci[Data.zamestnanci.Count-1].ID+1 : 1 );
             Data.zamestnanci.Add(Aktualni);
             using (SqlConnection connection = new SqlConnection(Data.connectionString))
             {

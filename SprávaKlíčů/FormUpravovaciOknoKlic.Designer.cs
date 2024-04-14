@@ -42,33 +42,37 @@
             // 
             // TBPocetKlicuNaPocatku
             // 
-            this.TBPocetKlicuNaPocatku.Location = new System.Drawing.Point(248, 155);
+            this.TBPocetKlicuNaPocatku.Location = new System.Drawing.Point(200, 123);
+            this.TBPocetKlicuNaPocatku.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.TBPocetKlicuNaPocatku.Name = "TBPocetKlicuNaPocatku";
-            this.TBPocetKlicuNaPocatku.Size = new System.Drawing.Size(59, 22);
+            this.TBPocetKlicuNaPocatku.Size = new System.Drawing.Size(45, 20);
             this.TBPocetKlicuNaPocatku.TabIndex = 36;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(27, 155);
+            this.label4.Location = new System.Drawing.Point(20, 126);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(215, 16);
+            this.label4.Size = new System.Drawing.Size(176, 13);
             this.label4.TabIndex = 35;
             this.label4.Text = "Počet vyrobených kusů na počátku";
             // 
             // MTBCislo
             // 
-            this.MTBCislo.Location = new System.Drawing.Point(90, 23);
+            this.MTBCislo.Location = new System.Drawing.Point(68, 19);
+            this.MTBCislo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MTBCislo.Mask = "0000";
             this.MTBCislo.Name = "MTBCislo";
-            this.MTBCislo.Size = new System.Drawing.Size(48, 22);
+            this.MTBCislo.Size = new System.Drawing.Size(37, 20);
             this.MTBCislo.TabIndex = 34;
             // 
             // BtnZrusit
             // 
-            this.BtnZrusit.Location = new System.Drawing.Point(186, 236);
+            this.BtnZrusit.Location = new System.Drawing.Point(140, 192);
+            this.BtnZrusit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BtnZrusit.Name = "BtnZrusit";
-            this.BtnZrusit.Size = new System.Drawing.Size(121, 30);
+            this.BtnZrusit.Size = new System.Drawing.Size(91, 24);
             this.BtnZrusit.TabIndex = 33;
             this.BtnZrusit.Text = "Zrušit";
             this.BtnZrusit.UseVisualStyleBackColor = true;
@@ -76,50 +80,56 @@
             // 
             // TBOznaceniDveri
             // 
-            this.TBOznaceniDveri.Location = new System.Drawing.Point(134, 106);
+            this.TBOznaceniDveri.Location = new System.Drawing.Point(100, 86);
+            this.TBOznaceniDveri.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.TBOznaceniDveri.Name = "TBOznaceniDveri";
-            this.TBOznaceniDveri.Size = new System.Drawing.Size(139, 22);
+            this.TBOznaceniDveri.Size = new System.Drawing.Size(105, 20);
             this.TBOznaceniDveri.TabIndex = 31;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(27, 106);
+            this.label3.Location = new System.Drawing.Point(20, 86);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(96, 16);
+            this.label3.Size = new System.Drawing.Size(83, 13);
             this.label3.TabIndex = 30;
             this.label3.Text = "Označení dveří";
             // 
             // TBNazevMistnosti
             // 
-            this.TBNazevMistnosti.Location = new System.Drawing.Point(134, 63);
+            this.TBNazevMistnosti.Location = new System.Drawing.Point(100, 51);
+            this.TBNazevMistnosti.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.TBNazevMistnosti.Name = "TBNazevMistnosti";
-            this.TBNazevMistnosti.Size = new System.Drawing.Size(139, 22);
+            this.TBNazevMistnosti.Size = new System.Drawing.Size(105, 20);
             this.TBNazevMistnosti.TabIndex = 29;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(27, 63);
+            this.label2.Location = new System.Drawing.Point(20, 51);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(101, 16);
+            this.label2.Size = new System.Drawing.Size(83, 13);
             this.label2.TabIndex = 28;
             this.label2.Text = "Název místnosti";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(27, 23);
+            this.label1.Location = new System.Drawing.Point(20, 19);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(37, 16);
+            this.label1.Size = new System.Drawing.Size(31, 13);
             this.label1.TabIndex = 27;
             this.label1.Text = "Číslo";
             // 
             // BtnUlozitZmeny
             // 
-            this.BtnUlozitZmeny.Location = new System.Drawing.Point(30, 234);
+            this.BtnUlozitZmeny.Location = new System.Drawing.Point(22, 190);
+            this.BtnUlozitZmeny.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BtnUlozitZmeny.Name = "BtnUlozitZmeny";
-            this.BtnUlozitZmeny.Size = new System.Drawing.Size(150, 32);
+            this.BtnUlozitZmeny.Size = new System.Drawing.Size(112, 26);
             this.BtnUlozitZmeny.TabIndex = 37;
             this.BtnUlozitZmeny.Text = "Uložit změny";
             this.BtnUlozitZmeny.UseVisualStyleBackColor = true;
@@ -127,9 +137,9 @@
             // 
             // FormUpravovaciOknoKlic
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(451, 300);
+            this.ClientSize = new System.Drawing.Size(338, 244);
             this.Controls.Add(this.BtnUlozitZmeny);
             this.Controls.Add(this.TBPocetKlicuNaPocatku);
             this.Controls.Add(this.label4);
@@ -140,8 +150,10 @@
             this.Controls.Add(this.TBNazevMistnosti);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FormUpravovaciOknoKlic";
             this.Text = "Upravování klíče";
+            this.Load += new System.EventHandler(this.FormUpravovaciOknoKlic_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
