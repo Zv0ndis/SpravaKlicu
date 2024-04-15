@@ -17,8 +17,10 @@ namespace SprávaKlíčů
         public Form1()
         {
             InitializeComponent();
+            printerPreview = new PrinterManager();
         }
 
+        private PrinterManager printerPreview;
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -147,138 +149,76 @@ namespace SprávaKlíčů
 
         private void BtnTisk_Click(object sender, EventArgs e)
         {
-            printDocument1.PrintPage += new PrintPageEventHandler(PrintPage);
-            printDialog1.Document = printDocument1;
-
-            DialogResult result = printDialog1.ShowDialog();
-            if (result == DialogResult.OK)
-            {
-                printDocument1.Print();
-            }
         }
 
         private void PrintPage(object sender, PrintPageEventArgs e)
         {
-            // Font pro nadpisy
-            Font titleFont = new Font("Arial", 14, FontStyle.Bold);
-            // Font pro normální text
-            Font normalFont = new Font("Arial", 12);
 
-            // Zde můžete definovat data pro každý přehled
-            string overviewTitle = "Přehledy aplikace";
-            string overviewText = "";
-
-            //// Podle uživatelova výběru zobrazíme odpovídající data
-            //switch (selectedOverview)
-            //{
-            //    case Overview.AllEmployees:
-            //        overviewText = GenerateAllEmployeesOverview();
-            //        break;
-            //    case Overview.KeysCount:
-            //        overviewText = GenerateKeysCountOverview();
-            //        break;
-            //    case Overview.EmployeeKeys:
-            //        overviewText = GenerateEmployeeKeysOverview(selectedEmployee);
-            //        break;
-            //    case Overview.KeyEmployees:
-            //        overviewText = GenerateKeyEmployeesOverview(selectedKey);
-            //        break;
-            //    case Overview.FreeKeys:
-            //        overviewText = GenerateFreeKeysOverview();
-            //        break;
-            //}
-
-            // Pozice pro kreslení textu na tiskové stránce
-            float yPos = 100;
-            float leftMargin = e.MarginBounds.Left;
-            float topMargin = e.MarginBounds.Top;
-
-            // Kreslení nadpisu
-            e.Graphics.DrawString(overviewTitle, titleFont, Brushes.Black, leftMargin, yPos);
-            yPos += titleFont.GetHeight();
-
-            // Kreslení textu přehledu
-            e.Graphics.DrawString(overviewText, normalFont, Brushes.Black, leftMargin, yPos);
-
-            // Kontrola, zda jsou další stránky k tisku
-            e.HasMorePages = true; // Změňte na true, pokud má být k dispozici další stránka
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            printPreviewDialog1.Document = printDocument1;
-            printPreviewDialog1.ShowDialog();
+
         }
 
         private void BtnNahled_Click(object sender, EventArgs e)
         {
-            printPreviewDialog1.Document = printDocument1;
-            printPreviewDialog1.ShowDialog();
+
         }
 
-        // Metoda pro generování přehledu všech zaměstnanců
-        private string GenerateAllEmployeesOverview()
+
+        private void button_prehled_vsech_zamestnancu_Click(object sender, EventArgs e)
         {
-            StringBuilder overview = new StringBuilder();
-            overview.AppendLine("Přehled všech zaměstnanců (seřazený podle příjmení):");
-            //foreach (Zamestnanec employee in GetAllEmployeesSortedByLastName())
-            //{
-            //    overview.AppendLine(employee.Prijmeni + ", " + employee.Jmeno);
-            //}
-            return overview.ToString();
+            EmployeeManager employeeManager = new EmployeeManager();
+            DataTable employees = employeeManager.GetAllEmployees();
+
+            PrinterManager printerManager = new PrinterManager();
+            printerManager.PrintEmployees(employees);
         }
 
-        // Metoda pro generování přehledu počtu klíčů, které mají zaměstnanci vypůjčené
-        private string GenerateKeysCountOverview()
+        private void printDocument1_PrintPage(object sender, PrintPageEventArgs e)
         {
-            StringBuilder overview = new StringBuilder();
-            overview.AppendLine("Počet klíčů, které mají zaměstnanci vypůjčené:");
-            //foreach (Zamestnanec employee in GetAllEmployees())
-            //{
-            //    int keysCount = GetEmployeeKeysCount(employee);
-            //    overview.AppendLine(employee.Prijmeni + ", " + employee.Jmeno + ": " + keysCount);
-            //}
-            return overview.ToString();
+
         }
 
-        // Metoda pro generování přehledu všech vypůjčených klíčů konkrétního zaměstnance
-        private string GenerateEmployeeKeysOverview(Zamestnanec employee)
+
+        public class EmployeeManager
         {
-            //StringBuilder overview = new StringBuilder();
-            //overview.AppendLine("Výpis všech vypůjčených klíčů zaměstnance " + employee.LastName + ", " + employee.FirstName + ":");
-            ////foreach (Klic key in GetEmployeeKeys(employee))
-            //{
-            //    overview.Append(" ID klíče: " + key.Cislo + ", Popis: " + key.NazevMistnosti);
-            //}
-            //return overview.ToString();
-            return null;
+
+            public DataTable GetAllEmployees()
+            {
+                DataTable dtEmployees = new DataTable();
+
+                using (SqlConnection connection = new SqlConnection(Data.connectionString))
+                {
+                    string query = "SELECT * FROM Employees ORDER BY Surname";
+
+                    SqlCommand command = new SqlCommand(query, connection);
+
+                    connection.Open();
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    adapter.Fill(dtEmployees);
+                }
+
+                return dtEmployees;
+            }
         }
 
-        // Metoda pro generování přehledu všech zaměstnanců, kteří mají konkrétní klíč vypůjčený
-        private string GenerateKeyEmployeesOverview(Klic key)
+
+        private void button_prehled_zamestnancu_s_klicem_Click(object sender, EventArgs e)
         {
-            StringBuilder overview = new StringBuilder();
-            //overview.AppendLine("Výpis všech zaměstnanců, kteří mají klíč " + key.Cislo + " vypůjčený:");
-            //foreach (Zamestnanec employee in GetKeyEmployees(key))
-            //{
-            //    overview.AppendLine(employee.Prijmeni + ", " + employee.Jmeno);
-            //}
-            return overview.ToString();
+            printerPreview.PreviewEmployeesWithBorrowedKeys();
         }
 
-        // Metoda pro generování přehledu volných klíčů
-        private string GenerateFreeKeysOverview()
+        private void printPreviewControl1_Click(object sender, EventArgs e)
         {
-            StringBuilder overview = new StringBuilder();
-            overview.AppendLine("Výpis volných klíčů:");
-            //foreach (Klic key in GetAllKeys())
-            //{
-            //    int availableKeys = GetAvailableKeysCount(key);
-            //    int totalKeys = GetTotalKeysCount(key);
-            //    overview.AppendLine("Číslo klíče: " + key.Cislo + ", Počet volných klíčů: " + availableKeys + "/" + totalKeys);
-            //}
-            return overview.ToString();
+
         }
 
+        private void button_pocet_volnych_klicu_Click(object sender, EventArgs e)
+        {
+           printerPreview.PreviewAvailableKeys();
+        }
     }
 }

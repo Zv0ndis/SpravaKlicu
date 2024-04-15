@@ -48,8 +48,17 @@ namespace SprávaKlíčů
                             command.Parameters.AddWithValue("@EmployeeId", employeeId);
                             command.ExecuteNonQuery();
 
-                            // Inkrementujte počet vypůjčených klíčů pro vybraný klíč
+                            // Aktualizujte počet vypůjčených klíčů pro vybraný klíč v databázi
+                            string updateQuery = @"UPDATE [dbo].[Keys] SET [HowManyBorrowed] = [HowManyBorrowed] + 1 WHERE [Id] = @KeyId";
+                            SqlCommand updateCommand = new SqlCommand(updateQuery, connection);
+                            updateCommand.Parameters.AddWithValue("@KeyId", keyId);
+                            updateCommand.ExecuteNonQuery();
+
+                            // Inkrementujte počet vypůjčených klíčů pro vybraný klíč v aplikaci
                             selectedKey.PocetVypujcenychKusu++;
+
+                            // Aktualizujte zobrazení seznamu klíčů v aplikaci
+                            // (Případně můžete zde provést aktualizaci ListBoxu nebo jiného UI prvku.)
 
                             MessageBox.Show("Operace spojení byla úspěšná.");
                         }

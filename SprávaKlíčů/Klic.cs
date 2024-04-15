@@ -15,9 +15,6 @@ namespace SprávaKlíčů
         public int PocetVyrobenychKusu { get; set; }
         public int PocetVypujcenychKusu { get; set; }
 
-
-
-
         public Klic(string cislo, string nazevMistnosti, string oznaceniDveri, int pocetVyrobenychKusu,int pocetVypujcenych,int ID)
         {
             this.ID = ID;

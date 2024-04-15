@@ -36,17 +36,18 @@
             // ListboxZam
             // 
             this.ListboxZam.FormattingEnabled = true;
-            this.ListboxZam.ItemHeight = 16;
-            this.ListboxZam.Location = new System.Drawing.Point(21, 22);
+            this.ListboxZam.Location = new System.Drawing.Point(16, 18);
+            this.ListboxZam.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ListboxZam.Name = "ListboxZam";
-            this.ListboxZam.Size = new System.Drawing.Size(666, 388);
+            this.ListboxZam.Size = new System.Drawing.Size(500, 316);
             this.ListboxZam.TabIndex = 19;
             // 
             // BtnZrusit
             // 
-            this.BtnZrusit.Location = new System.Drawing.Point(192, 463);
+            this.BtnZrusit.Location = new System.Drawing.Point(144, 376);
+            this.BtnZrusit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BtnZrusit.Name = "BtnZrusit";
-            this.BtnZrusit.Size = new System.Drawing.Size(97, 30);
+            this.BtnZrusit.Size = new System.Drawing.Size(73, 24);
             this.BtnZrusit.TabIndex = 18;
             this.BtnZrusit.Text = "Zrušit";
             this.BtnZrusit.UseVisualStyleBackColor = true;
@@ -54,9 +55,10 @@
             // 
             // BtnVyberZam
             // 
-            this.BtnVyberZam.Location = new System.Drawing.Point(21, 463);
+            this.BtnVyberZam.Location = new System.Drawing.Point(16, 376);
+            this.BtnVyberZam.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BtnVyberZam.Name = "BtnVyberZam";
-            this.BtnVyberZam.Size = new System.Drawing.Size(147, 30);
+            this.BtnVyberZam.Size = new System.Drawing.Size(110, 24);
             this.BtnVyberZam.TabIndex = 20;
             this.BtnVyberZam.Text = "Vybrat zaměstnance";
             this.BtnVyberZam.UseVisualStyleBackColor = true;
@@ -64,14 +66,16 @@
             // 
             // FormVybereZamProPrehled
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 534);
+            this.ClientSize = new System.Drawing.Size(600, 434);
             this.Controls.Add(this.BtnVyberZam);
             this.Controls.Add(this.ListboxZam);
             this.Controls.Add(this.BtnZrusit);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FormVybereZamProPrehled";
             this.Text = "FormVybereZamProPrehled";
+            this.Load += new System.EventHandler(this.FormVybereZamProPrehled_Load);
             this.ResumeLayout(false);
 
         }

@@ -22,6 +22,12 @@ namespace SprávaKlíčů
             Prijmeni = prijmeni;
             Zkratka = zkratka.ToUpper(); 
         }
+
+        public override string ToString()
+        {
+            return $"{Jmeno} {Prijmeni}";
+        }
+
         public void PridatVypujcenyKlic(Klic klic)
         {
             VypujceneKlice.Add(klic);
