@@ -72,7 +72,7 @@ namespace SprávaKlíčů
                 adapter.Fill(dt);
             }
 
-            // Dictionary to store the list of employees for each key
+
             Dictionary<string, List<string>> keyEmployees = new Dictionary<string, List<string>>();
 
             foreach (DataRow row in dt.Rows)
@@ -80,7 +80,6 @@ namespace SprávaKlíčů
                 string keyNumber = row["KeyNumber"].ToString();
                 string employeeName = $"{row["EmployeeName"]} {row["EmployeeSurname"]} ({row["EmployeeShortcut"]})";
 
-                // Add employee to the list for the corresponding key
                 if (keyEmployees.ContainsKey(keyNumber))
                 {
                     if (!keyEmployees[keyNumber].Contains(employeeName))
@@ -105,22 +104,19 @@ namespace SprávaKlíčů
                 float yPos = 0;
                 foreach (var kvp in keyEmployees)
                 {
-                    // Print the key header
                     string keyNumber = kvp.Key;
                     g.DrawString($"Zaměstnanců s klíčem {keyNumber}:", font, Brushes.Black, 50, yPos);
                     yPos += font.GetHeight();
 
-                    // Print employee details for the current key
                     foreach (var employeeName in kvp.Value)
                     {
                         g.DrawString($"   {employeeName}", font, Brushes.Black, 50, yPos);
                         yPos += font.GetHeight();
                     }
 
-                    yPos += 20; // Add space between keys
+                    yPos += 20;
                 }
 
-                // Check if the page can accommodate more rows
                 if (yPos + font.GetHeight() > e.MarginBounds.Height)
                 {
                     e.HasMorePages = true;
@@ -156,7 +152,7 @@ namespace SprávaKlíčů
     INNER JOIN 
         Employees e ON bk.Employee = e.Id
     WHERE 
-        e.Id = @EmployeeId"; // Filter based on the employee's ID
+        e.Id = @EmployeeId";
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@EmployeeId", selectedEmployeeId);
@@ -179,7 +175,6 @@ namespace SprávaKlíčů
 
                 float yPos = 0;
 
-                // Print employee details
                 string employeeName = dt.Rows[0]["EmployeeName"].ToString();
                 string employeeSurname = dt.Rows[0]["EmployeeSurname"].ToString();
                 string employeeShortcut = dt.Rows[0]["EmployeeShortcut"].ToString();
@@ -187,10 +182,8 @@ namespace SprávaKlíčů
                 g.DrawString(employeeDetails, font, Brushes.Black, 50, yPos);
                 yPos += font.GetHeight();
 
-                // Dictionary to store the count of each key number
                 Dictionary<string, int> keyCounts = new Dictionary<string, int>();
 
-                // Count the occurrences of each key number
                 foreach (DataRow row in dt.Rows)
                 {
                     string keyNumber = row["KeyNumber"].ToString();
@@ -204,7 +197,6 @@ namespace SprávaKlíčů
                     }
                 }
 
-                // Output each key number along with its count of occurrences
                 foreach (var kvp in keyCounts)
                 {
                     string keyOutput = $"{kvp.Value}x Klíč {kvp.Key}";
@@ -212,7 +204,6 @@ namespace SprávaKlíčů
                     yPos += font.GetHeight();
                 }
 
-                // Check if the page can accommodate more rows
                 if (yPos + font.GetHeight() > e.MarginBounds.Height)
                 {
                     e.HasMorePages = true;
@@ -264,17 +255,13 @@ namespace SprávaKlíčů
                     int freeKeys = Convert.ToInt32(row["FreeKeys"]);
                     int totalKeys = Convert.ToInt32(row["TotalKeys"]);
 
-                    // Format the key in the desired way
                     string formattedKey = $"Klíč {keyNumber}: {freeKeys} / {totalKeys}";
 
-                    // Draw the formatted key
                     g.DrawString(formattedKey, font, Brushes.Black, 50, yPos);
                     yPos += font.GetHeight();
 
-                    yPos += 20; // Adding some space between keys
+                    yPos += 20;
                     count++;
-
-                    // Check if the page can accommodate more rows
                     if (count * font.GetHeight() > e.MarginBounds.Height)
                     {
                         e.HasMorePages = true;

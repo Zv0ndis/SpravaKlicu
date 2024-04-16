@@ -26,10 +26,9 @@ namespace SprávaKlíčů
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // Načtení všech zaměstnanců
             Data.zamestnanci = LoadAllEmployees();
 
-            // Načtení všech klíčů
+
             Data.klice = LoadAllKeys();
 
             foreach (Zamestnanec zamestnanec in Data.zamestnanci)
@@ -45,7 +44,6 @@ namespace SprávaKlíčů
 
         }
 
-        // Metoda pro načtení všech zaměstnanců
         private List<Zamestnanec> LoadAllEmployees()
         {
             List<Zamestnanec> employees = new List<Zamestnanec>();
@@ -76,7 +74,6 @@ namespace SprávaKlíčů
             return employees;
         }
 
-        // Metoda pro načtení všech klíčů
         private List<Klic> LoadAllKeys()
         {
             List<Klic> keys = new List<Klic>();
@@ -161,26 +158,6 @@ namespace SprávaKlíčů
             form.Show();
         }
 
-        private void BtnTisk_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void PrintPage(object sender, PrintPageEventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void BtnNahled_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
         private void button_prehled_vsech_zamestnancu_Click(object sender, EventArgs e)
         {
             EmployeeManager employeeManager = new EmployeeManager();
@@ -189,12 +166,6 @@ namespace SprávaKlíčů
             PrinterManager printerManager = new PrinterManager();
             printerManager.PrintEmployees(employees);
         }
-
-        private void printDocument1_PrintPage(object sender, PrintPageEventArgs e)
-        {
-
-        }
-
 
         public class EmployeeManager
         {
@@ -219,15 +190,9 @@ namespace SprávaKlíčů
             }
         }
 
-
         private void button_prehled_zamestnancu_s_klicem_Click(object sender, EventArgs e)
         {
             printerPreview.PreviewKlíčeKolikZaměstnanců();
-        }
-
-        private void printPreviewControl1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void button_pocet_volnych_klicu_Click(object sender, EventArgs e)
@@ -247,8 +212,6 @@ namespace SprávaKlíčů
             switch (comboBox1.SelectedIndex)
             {
                 case 0:
-                    // Populate RichTextBox with PrintEmployees overview
-                    // Populate RichTextBox with PrintEmployees overview in reverse order4
                     richTextBox1.Clear();
                     comboBox2.Enabled = false;
                     label2.Enabled = false;
@@ -262,7 +225,7 @@ namespace SprávaKlíčů
                         richTextBox1.AppendText(Environment.NewLine);
                     }
 
-                break;
+                    break;
 
 
                 case 1:
@@ -274,11 +237,10 @@ namespace SprávaKlíčů
                     comboBox2.Visible = true;
                     label2.Visible = true;
 
-                 
+
                     break;
 
                 case 2:
-                    // Clear the RichTextBox before populating with new data
                     richTextBox1.Clear();
 
                     comboBox2.Enabled = false;
@@ -288,7 +250,6 @@ namespace SprávaKlíčů
 
                     foreach (Klic selectedKey in Data.klice)
                     {
-                        // Fetch employees who have the selected key borrowed
                         DataTable dt = new DataTable();
                         using (SqlConnection connection = new SqlConnection(Data.connectionString))
                         {
@@ -320,7 +281,7 @@ namespace SprávaKlíčů
                             richTextBox1.AppendText($"Zaměstnanci s klíčem {selectedKey.Cislo}:");
                             richTextBox1.AppendText(Environment.NewLine);
 
-                            // Output each employee who has the selected key borrowed along with the number of keys they own
+                           
                             foreach (DataRow row in dt.Rows)
                             {
                                 string employeeName = row["EmployeeName"].ToString();
@@ -340,7 +301,7 @@ namespace SprávaKlíčů
                     break;
 
                 case 3:
-                    // Clear the RichTextBox before populating with new data
+                  
                     richTextBox1.Clear();
                     comboBox2.Enabled = false;
                     label2.Enabled = false;
@@ -387,13 +348,10 @@ namespace SprávaKlíčů
             string query;
             if (comboBox2.SelectedItem != null)
             {
-                // Clear RichTextBox before populating with new data
                 richTextBox1.Clear();
 
-                // Retrieve the selected employee's ID
                 int selectedEmployeeId = ((Zamestnanec)comboBox2.SelectedItem).ID;
 
-                // Fetch keys borrowed by the selected employee
                 DataTable dt = new DataTable();
                 using (SqlConnection connection = new SqlConnection(Data.connectionString))
                 {
@@ -403,14 +361,14 @@ namespace SprávaKlíčů
                 e.Name AS EmployeeName,
                 e.Surname AS EmployeeSurname,
                 e.EShortcut AS EmployeeShortcut
-            FROM 
-                Employees e
-            INNER JOIN 
-                BorrowedKeys bk ON e.Id = bk.Employee
-            INNER JOIN 
-                Keys k ON bk.[Key] = k.Id
-            WHERE 
-                e.Id = @EmployeeId";
+               FROM 
+                 Employees e
+                    INNER JOIN 
+                     BorrowedKeys bk ON e.Id = bk.Employee
+                    INNER JOIN 
+                      Keys k ON bk.[Key] = k.Id
+                     WHERE 
+                       e.Id = @EmployeeId";
 
                     SqlCommand command = new SqlCommand(query, connection);
                     command.Parameters.AddWithValue("@EmployeeId", selectedEmployeeId);
@@ -424,10 +382,9 @@ namespace SprávaKlíčů
                     string employeeSurname = dt.Rows[0]["EmployeeSurname"].ToString();
                     string employeeShortcut = dt.Rows[0]["EmployeeShortcut"].ToString();
 
-                    // Dictionary to store the count of each key number
+
                     Dictionary<string, int> keyCounts = new Dictionary<string, int>();
 
-                    // Count the occurrences of each key number
                     foreach (DataRow row in dt.Rows)
                     {
                         string keyNumber = row["KeyNumber"].ToString();
@@ -445,7 +402,6 @@ namespace SprávaKlíčů
                     richTextBox1.AppendText(employeeDetails);
                     richTextBox1.AppendText(Environment.NewLine);
 
-                    // Output each key number along with its count of occurrences
                     foreach (var kvp in keyCounts)
                     {
                         richTextBox1.AppendText($"   {kvp.Value}x Klíč {kvp.Key}");
@@ -459,12 +415,5 @@ namespace SprávaKlíčů
                 }
             }
         }
-
-        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-        }
-        
-        
     }
 }

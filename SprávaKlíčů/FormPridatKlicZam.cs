@@ -20,26 +20,21 @@ namespace SprávaKlíčů
 
         private void BtnDat_Click(object sender, EventArgs e)
         {
-            // Zkontrolujte, zda jsou vybrány položky v obou seznamových polích
             if (ListboxZam.SelectedItem != null && ListboxKlice.SelectedItem != null)
             {
-                // Extrahování ID zaměstnance a ID klíče z vybraných položek v seznamových polích
                 int employeeId = Data.zamestnanci[ListboxZam.SelectedIndex].ID;
                 int keyIndex = ListboxKlice.SelectedIndex;
                 Klic selectedKey = Data.klice[keyIndex];
                 int keyId = selectedKey.ID;
 
-                // Zkontrolujte, zda se nemůže půjčit více klíčů, než bylo vyrobeno
                 if (selectedKey.PocetVypujcenychKusu < selectedKey.PocetVyrobenychKusu)
                 {
-                    // Proveďte operaci spojení
                     try
                     {
                         using (SqlConnection connection = new SqlConnection(Data.connectionString))
                         {
                             connection.Open();
 
-                            // Vložte ID zaměstnance a ID klíče do tabulky BorrowedKeys
                             string insertQuery = @"INSERT INTO [dbo].[BorrowedKeys] ([Key], [Employee], [DateOfBorrow]) 
                                            VALUES (@KeyId, @EmployeeId, GETDATE())";
 
@@ -48,17 +43,12 @@ namespace SprávaKlíčů
                             command.Parameters.AddWithValue("@EmployeeId", employeeId);
                             command.ExecuteNonQuery();
 
-                            // Aktualizujte počet vypůjčených klíčů pro vybraný klíč v databázi
                             string updateQuery = @"UPDATE [dbo].[Keys] SET [HowManyBorrowed] = [HowManyBorrowed] + 1 WHERE [Id] = @KeyId";
                             SqlCommand updateCommand = new SqlCommand(updateQuery, connection);
                             updateCommand.Parameters.AddWithValue("@KeyId", keyId);
                             updateCommand.ExecuteNonQuery();
 
-                            // Inkrementujte počet vypůjčených klíčů pro vybraný klíč v aplikaci
                             selectedKey.PocetVypujcenychKusu++;
-
-                            // Aktualizujte zobrazení seznamu klíčů v aplikaci
-                            // (Případně můžete zde provést aktualizaci ListBoxu nebo jiného UI prvku.)
 
                             MessageBox.Show("Operace spojení byla úspěšná.");
                         }

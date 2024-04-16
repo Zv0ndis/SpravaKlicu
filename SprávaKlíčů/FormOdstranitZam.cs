@@ -37,7 +37,7 @@ namespace SprávaKlíčů
                     catch (Exception ex)
                     {
                         transaction.Rollback();
-                        MessageBox.Show("Chybka" + Environment.NewLine + ex.Message);
+                        MessageBox.Show("Došlo k chybě při odstraňování zaměstnance: " + Environment.NewLine + ex.Message);
                     }
                 }
             }

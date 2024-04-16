@@ -19,13 +19,10 @@ namespace SprávaKlíčů
 
         private void BtnVyberZam_Click(object sender, EventArgs e)
         {
-            // Získání vybraného zaměstnance z ListBoxu
             Zamestnanec selectedEmployee = ListboxZam.SelectedItem as Zamestnanec;
 
-            // Zkontrolovat, zda byl vybrán nějaký zaměstnanec
             if (selectedEmployee != null)
             {
-                // Zavolání metody pro zobrazení náhledu tisku
                 PrinterManager printerManager = new PrinterManager();
                 printerManager.PreviewKlíčeZaměstnance(selectedEmployee.ID);
             }
@@ -42,10 +39,8 @@ namespace SprávaKlíčů
 
         private void FormVybereZamProPrehled_Load(object sender, EventArgs e)
         {
-            // Naplnění ListBoxu seznamem zaměstnanců při načtení formuláře
             foreach (Zamestnanec zamestnanec in Data.zamestnanci)
             {
-                // Přidání instance třídy Zamestnanec do ListBoxu
                 ListboxZam.Items.Add(zamestnanec);
             }
         }

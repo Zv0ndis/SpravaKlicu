@@ -37,7 +37,7 @@ namespace SprávaKlíčů
                     catch (Exception ex)
                     {
                         transaction.Rollback();
-                        MessageBox.Show("Chybka" + Environment.NewLine + ex.Message);
+                        MessageBox.Show("Chyba při odstraňování klíče: " + Environment.NewLine + ex.Message);
                     }
                 }
             }

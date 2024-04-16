@@ -41,7 +41,7 @@ namespace SprávaKlíčů
                 catch (Exception ex)
                 {
                     transaction.Rollback();
-                    MessageBox.Show("Chybka" + ex.Message);
+                    MessageBox.Show("Došlo k chybě při přidávání klíče: " + ex.Message);
                 }
             }
 
