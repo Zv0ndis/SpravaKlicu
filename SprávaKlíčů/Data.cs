@@ -8,7 +8,7 @@ namespace SprávaKlíčů
 {
     public static class Data
     {
-        public readonly static string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\zvond\\source\\repos\\Zv0ndis\\SpravaKlicu\\SprávaKlíčů\\KeysEvidenceDB.mdf;Integrated Security=True;Connect Timeout=30";
+        public readonly static string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\zvond\\Documents\\SpravaKlicu.mdf;Integrated Security=True;Connect Timeout=30";
         public static List<Zamestnanec> zamestnanci = new List<Zamestnanec>();
         public static List<Klic> klice = new List<Klic>();
     }

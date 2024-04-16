@@ -27,7 +27,7 @@ namespace SprávaKlíčů
             {
                 // Zavolání metody pro zobrazení náhledu tisku
                 PrinterManager printerManager = new PrinterManager();
-                printerManager.PreviewKeysWithEmployee(selectedEmployee.ID);
+                printerManager.PreviewKlíčeZaměstnance(selectedEmployee.ID);
             }
             else
             {

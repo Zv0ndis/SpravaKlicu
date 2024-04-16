@@ -13,8 +13,6 @@ namespace SprávaKlíčů
         public string Prijmeni { get; set; }
         public string Zkratka { get; set; }
 
-        public List<Klic> VypujceneKlice { get; set; } = new List<Klic>();
-
         public Zamestnanec(string jmeno, string prijmeni, string zkratka,int ID)
         {
             this.ID = ID;
@@ -28,15 +26,6 @@ namespace SprávaKlíčů
             return $"{Jmeno} {Prijmeni}";
         }
 
-        public void PridatVypujcenyKlic(Klic klic)
-        {
-            VypujceneKlice.Add(klic);
-        }
-
-        public void OdebratVypujcenyKlic(Klic klic)
-        {
-            VypujceneKlice.Remove(klic);
-        }
     }
 
 }

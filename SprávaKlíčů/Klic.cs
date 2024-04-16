@@ -24,5 +24,10 @@ namespace SprávaKlíčů
             PocetVyrobenychKusu = pocetVyrobenychKusu;
             PocetVypujcenychKusu = pocetVypujcenych;
         }
+
+        public override string ToString()
+        {
+            return $"{Cislo} {OznaceniDveri} {NazevMistnosti}";
+        }
     }
 }

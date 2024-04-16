@@ -49,7 +49,7 @@ namespace SprávaKlíčů
             }
         }
 
-        public void PreviewEmployeesWithBorrowedKeys()
+        public void PreviewKlíčeKolikZaměstnanců()
         {
             DataTable dt = new DataTable();
             using (SqlConnection connection = new SqlConnection(Data.connectionString))
@@ -72,89 +72,26 @@ namespace SprávaKlíčů
                 adapter.Fill(dt);
             }
 
-            PrintPreviewDialog previewDialog = new PrintPreviewDialog();
-            PrintDocument pd = new PrintDocument();
+            // Dictionary to store the list of employees for each key
+            Dictionary<string, List<string>> keyEmployees = new Dictionary<string, List<string>>();
 
-            pd.PrintPage += (sender, e) =>
+            foreach (DataRow row in dt.Rows)
             {
-                Graphics g = e.Graphics;
-                Font font = new Font("Arial", 12);
+                string keyNumber = row["KeyNumber"].ToString();
+                string employeeName = $"{row["EmployeeName"]} {row["EmployeeSurname"]} ({row["EmployeeShortcut"]})";
 
-                string currentKeyNumber = "";
-                float yPos = 0;
-                foreach (DataRow row in dt.Rows)
+                // Add employee to the list for the corresponding key
+                if (keyEmployees.ContainsKey(keyNumber))
                 {
-                    string keyNumber = row["KeyNumber"].ToString();
-                    string employeeName = row["EmployeeName"].ToString();
-                    string employeeSurname = row["EmployeeSurname"].ToString();
-                    string employeeShortcut = row["EmployeeShortcut"].ToString();
-
-                    if (keyNumber != currentKeyNumber)
+                    if (!keyEmployees[keyNumber].Contains(employeeName))
                     {
-                        // Print the key header if it's a new key
-                        if (currentKeyNumber != "")
-                        {
-                            yPos += 20; // Add space between keys
-                        }
-                        g.DrawString($"Klíč: {keyNumber}", font, Brushes.Black, 50, yPos);
-                        yPos += font.GetHeight();
-                        currentKeyNumber = keyNumber;
+                        keyEmployees[keyNumber].Add(employeeName);
                     }
-
-                    // Print the employee details
-                    string employeeDetails = $"   {employeeName} {employeeSurname} ({employeeShortcut})";
-                    g.DrawString(employeeDetails, font, Brushes.Black, 50, yPos);
-                    yPos += font.GetHeight();
                 }
-
-                // Check if the page can accommodate more rows
-                if (yPos + font.GetHeight() > e.MarginBounds.Height)
+                else
                 {
-                    e.HasMorePages = true;
+                    keyEmployees[keyNumber] = new List<string> { employeeName };
                 }
-            };
-
-            previewDialog.Document = pd;
-
-            if (previewDialog.ShowDialog() == DialogResult.OK)
-            {
-                pd.Print();
-            }
-        }
-
-        public void PreviewKeysWithEmployee(int selectedEmployeeId)
-        {
-            DataTable dt = new DataTable();
-            using (SqlConnection connection = new SqlConnection(Data.connectionString))
-            {
-                string query = @"
-            SELECT 
-                k.Number AS KeyNumber,
-                k.TypeOfRoom AS KeyType,
-                k.DoorSign AS KeyDoorSign,
-                e.Name AS EmployeeName,
-                e.Surname AS EmployeeSurname,
-                e.EShortcut AS EmployeeShortcut,
-                bk.DateOfBorrow AS DateOfBorrow
-            FROM 
-                Keys k
-            INNER JOIN 
-                BorrowedKeys bk ON k.Id = bk.[Key]
-            INNER JOIN 
-                Employees e ON bk.Employee = e.Id
-            WHERE 
-                e.Id = @EmployeeId"; // Filter based on the employee's ID
-
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@EmployeeId", selectedEmployeeId);
-                SqlDataAdapter adapter = new SqlDataAdapter(command);
-                adapter.Fill(dt);
-            }
-
-            if (dt.Rows.Count == 0)
-            {
-                MessageBox.Show("No keys borrowed by the selected employee.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
             }
 
             PrintPreviewDialog previewDialog = new PrintPreviewDialog();
@@ -166,17 +103,19 @@ namespace SprávaKlíčů
                 Font font = new Font("Arial", 12);
 
                 float yPos = 0;
-                foreach (DataRow row in dt.Rows)
+                foreach (var kvp in keyEmployees)
                 {
-                    // Print employee name
-                    string employeeName = $"{row["EmployeeName"]} {row["EmployeeSurname"]} ({row["EmployeeShortcut"]})";
-                    g.DrawString($"Zaměstnanec: {employeeName}", font, Brushes.Black, 50, yPos);
+                    // Print the key header
+                    string keyNumber = kvp.Key;
+                    g.DrawString($"Zaměstnanců s klíčem {keyNumber}:", font, Brushes.Black, 50, yPos);
                     yPos += font.GetHeight();
 
-                    // Print key details
-                    string keyNumber = row["KeyNumber"].ToString();
-                    g.DrawString($"    Klíč {keyNumber}", font, Brushes.Black, 50, yPos);
-                    yPos += font.GetHeight();
+                    // Print employee details for the current key
+                    foreach (var employeeName in kvp.Value)
+                    {
+                        g.DrawString($"   {employeeName}", font, Brushes.Black, 50, yPos);
+                        yPos += font.GetHeight();
+                    }
 
                     yPos += 20; // Add space between keys
                 }
@@ -196,7 +135,100 @@ namespace SprávaKlíčů
             }
         }
 
-        public void PreviewAvailableKeys()
+        public void PreviewKlíčeZaměstnance(int selectedEmployeeId)
+        {
+            DataTable dt = new DataTable();
+            using (SqlConnection connection = new SqlConnection(Data.connectionString))
+            {
+                string query = @"
+    SELECT 
+        k.Number AS KeyNumber,
+        k.TypeOfRoom AS KeyType,
+        k.DoorSign AS KeyDoorSign,
+        e.Name AS EmployeeName,
+        e.Surname AS EmployeeSurname,
+        e.EShortcut AS EmployeeShortcut,
+        bk.DateOfBorrow AS DateOfBorrow
+    FROM 
+        Keys k
+    INNER JOIN 
+        BorrowedKeys bk ON k.Id = bk.[Key]
+    INNER JOIN 
+        Employees e ON bk.Employee = e.Id
+    WHERE 
+        e.Id = @EmployeeId"; // Filter based on the employee's ID
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@EmployeeId", selectedEmployeeId);
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                adapter.Fill(dt);
+            }
+
+            if (dt.Rows.Count == 0)
+            {
+                MessageBox.Show("No keys borrowed by the selected employee.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            PrintDocument pd = new PrintDocument();
+
+            pd.PrintPage += (sender, e) =>
+            {
+                Graphics g = e.Graphics;
+                Font font = new Font("Arial", 12);
+
+                float yPos = 0;
+
+                // Print employee details
+                string employeeName = dt.Rows[0]["EmployeeName"].ToString();
+                string employeeSurname = dt.Rows[0]["EmployeeSurname"].ToString();
+                string employeeShortcut = dt.Rows[0]["EmployeeShortcut"].ToString();
+                string employeeDetails = $"{employeeName} {employeeSurname}: počet klíčů {dt.Rows.Count}";
+                g.DrawString(employeeDetails, font, Brushes.Black, 50, yPos);
+                yPos += font.GetHeight();
+
+                // Dictionary to store the count of each key number
+                Dictionary<string, int> keyCounts = new Dictionary<string, int>();
+
+                // Count the occurrences of each key number
+                foreach (DataRow row in dt.Rows)
+                {
+                    string keyNumber = row["KeyNumber"].ToString();
+                    if (keyCounts.ContainsKey(keyNumber))
+                    {
+                        keyCounts[keyNumber]++;
+                    }
+                    else
+                    {
+                        keyCounts[keyNumber] = 1;
+                    }
+                }
+
+                // Output each key number along with its count of occurrences
+                foreach (var kvp in keyCounts)
+                {
+                    string keyOutput = $"{kvp.Value}x Klíč {kvp.Key}";
+                    g.DrawString(keyOutput, font, Brushes.Black, 50, yPos);
+                    yPos += font.GetHeight();
+                }
+
+                // Check if the page can accommodate more rows
+                if (yPos + font.GetHeight() > e.MarginBounds.Height)
+                {
+                    e.HasMorePages = true;
+                }
+            };
+
+            PrintPreviewDialog previewDialog = new PrintPreviewDialog();
+            previewDialog.Document = pd;
+
+            if (previewDialog.ShowDialog() == DialogResult.OK)
+            {
+                pd.Print();
+            }
+        }
+
+        public void PreviewVolnéKlíče()
         {
             DataTable dt = new DataTable();
             using (SqlConnection connection = new SqlConnection(Data.connectionString))
